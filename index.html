@@ -143,6 +143,57 @@
       gap: 0.4rem;
     }
 
+    .hero-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero-nav a {
+      color: var(--cream);
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    @media (hover: hover) {
+      .hero-nav a:hover { background: rgba(255, 255, 255, 0.22); }
+    }
+
+    .hero-nav a.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      padding: 0.85rem 1.5rem;
+      background: var(--coffee-dark);
+      color: var(--cream);
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    @media (hover: hover) {
+      .cta-link:hover {
+        background: var(--coffee-medium);
+        transform: translateY(-1px);
+      }
+    }
+
     .container {
       width: min(960px, 100%);
       margin: 0 auto;
@@ -1026,6 +1077,10 @@
         <span>📋 NIT 1061539845</span>
         <span>🏢 Programas SST & bienestar laboral</span>
       </div>
+      <nav class="hero-nav" aria-label="Navegación principal">
+        <a href="costos.html" class="primary">Ver desglose de costos</a>
+        <a href="#inversion">Paquetes e inversión</a>
+      </nav>
     </div>
   </header>
 
@@ -1384,9 +1439,9 @@
       </div>
 
       <div class="pending-price">
-        <strong>📌 Tarifa de baristas por evento:</strong> pendiente de definición.
-        Este valor se calculará según duración, desplazamiento y número de estaciones activas.
-        Contáctanos para una cotización personalizada.
+        <strong>📌 Tarifas barista (referencia):</strong> facilitador $50.000/h · apoyo $40.000/h ·
+        tarifa plana $180.000 por barista en taller de 2 h. Ver desglose completo, insumos y calendario de pagos en
+        <a href="costos.html" style="color:var(--accent);font-weight:600;">costos y condiciones de pago →</a>
       </div>
 
       <div class="includes-note">
@@ -1400,7 +1455,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="inversion">
     <div class="container">
       <p class="section-label">Inversión</p>
       <h2 class="section-title">Paquetes para empresas</h2>
@@ -1450,6 +1505,8 @@
       <p class="footnote">
         Precios válidos para eventos en Cali. Para otras ciudades, consultar costos adicionales de desplazamiento.
       </p>
+
+      <a href="costos.html" class="cta-link">Ver desglose de costos y condiciones de pago →</a>
     </div>
   </section>
 
