@@ -1,0 +1,37 @@
+---
+description: Publicar siempre los cambios en GitHub Pages de este proyecto
+alwaysApply: true
+---
+
+# Publicación obligatoria en GitHub
+
+Este proyecto es el sitio de propuesta comercial de Elixir Café, desplegado en GitHub Pages.
+
+## Repositorio
+
+- **Repo:** https://github.com/lasucursaldelcafe-droid/elixir-propuesta-bienestar
+- **Sitio en vivo:** https://lasucursaldelcafe-droid.github.io/elixir-propuesta-bienestar/
+
+## Regla del usuario
+
+**Todo cambio en este proyecto debe quedar publicado en GitHub.** No basta con editar archivos localmente.
+
+## Flujo obligatorio al terminar cualquier tarea
+
+1. Verificar cambios con `git status` y `git diff`.
+2. Hacer `git add` de los archivos relevantes.
+3. Crear commit con mensaje claro en español (usar identidad inline si hace falta: `git -c user.email="elixircafecali@gmail.com" -c user.name="Elixir Cafe" commit`).
+4. Ejecutar `git push origin main` sin pedir confirmación adicional — el usuario ya autorizó publicar siempre.
+5. Confirmar al usuario las URLs actualizadas del sitio.
+
+## Archivos principales
+
+- `index.html` — propuesta comercial (pública)
+- `presupuesto.html` — presupuesto interno de costos
+- `og-cover.svg` — imagen para compartir en redes
+
+## Notas
+
+- No enlazar `presupuesto.html` desde la propuesta comercial pública; es documento interno.
+- GitHub Pages se actualiza en 1–2 minutos tras el push.
+- Nunca actualizar `git config` global del usuario.
