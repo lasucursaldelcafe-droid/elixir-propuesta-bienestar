@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Talleres corporativos de catación y preparación manual de café para empresas en Cali. Experiencias lúdicas de bienestar laboral por Elixir Café.">
+  <meta name="author" content="Elixir Café">
+  <meta name="theme-color" content="#2c1810">
+  <meta property="og:title" content="Elixir Café — Café que Inspira | Propuesta Bienestar Empresarial">
+  <meta property="og:description" content="Talleres de catación por triangulación y preparación manual para programas SST. Hasta 40 personas. Cali, Colombia.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:image" content="https://lasucursaldelcafe-droid.github.io/elixir-propuesta-bienestar/og-cover.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://lasucursaldelcafe-droid.github.io/elixir-propuesta-bienestar/og-cover.svg">
+  <meta name="twitter:title" content="Elixir Café — Propuesta Bienestar Empresarial">
+  <meta name="twitter:description" content="Talleres sensoriales de café para empresas. Catación lúdica + preparación manual.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%E2%98%95</text></svg>">
+  <title>Elixir Café — Propuesta Bienestar Empresarial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --coffee-dark: #2c1810;
+      --coffee-medium: #5c3d2e;
+      --coffee-light: #8b6914;
+      --cream: #faf6f0;
+      --cream-dark: #f0e8dc;
+      --accent: #c87941;
+      --accent-soft: #e8a86b;
+      --green: #4a6741;
+      --text: #3d2c24;
+      --text-muted: #6b5344;
+      --white: #ffffff;
+      --shadow: 0 4px 24px rgba(44, 24, 16, 0.08);
+      --shadow-lg: 0 12px 48px rgba(44, 24, 16, 0.12);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 17px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--coffee-dark);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--coffee-dark) 0%, var(--coffee-medium) 50%, #3d2817 100%);
+      color: var(--cream);
+      padding: 4rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(200, 121, 65, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      color: var(--cream);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: var(--accent-soft);
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      opacity: 0.92;
+      max-width: 640px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    section:nth-child(even) {
+      background: var(--white);
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      margin-bottom: 1rem;
+    }
+
+    .section-intro {
+      color: var(--text-muted);
+      max-width: 720px;
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* Glosario lúdico */
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .term-card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--cream-dark);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .term-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .term-emoji {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .term-card h4 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: var(--coffee-medium);
+    }
+
+    .term-card .simple {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+
+    .term-card p:last-child {
+      font-size: 0.95rem;
+    }
+
+    /* Taller cards */
+    .workshop {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      margin-bottom: 3rem;
+      border: 1px solid var(--cream-dark);
+    }
+
+    .workshop-header {
+      padding: 2rem 2rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .workshop-num {
+      background: var(--coffee-dark);
+      color: var(--cream);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .workshop-title-block {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .workshop-title-block h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .workshop-tagline {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .workshop-duration {
+      background: var(--cream);
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--coffee-medium);
+      white-space: nowrap;
+    }
+
+    .workshop-body {
+      padding: 0 2rem 2rem;
+    }
+
+    .workshop-body > p {
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #fff9f0 0%, var(--cream) 100%);
+      border-left: 4px solid var(--accent);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 1.5rem 0;
+    }
+
+    .highlight-box strong {
+      color: var(--coffee-dark);
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 3rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2rem;
+      height: 2rem;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .includes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .include-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: var(--cream);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+    }
+
+    .include-item .icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    /* Equipos e insumos */
+    .resource-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .resource-table th,
+    .resource-table td {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .resource-table th {
+      background: var(--coffee-dark);
+      color: var(--cream);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .resource-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .resource-table tr:hover td {
+      background: var(--cream);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .tag-essential { background: #fde8d8; color: #8b4513; }
+    .tag-optional { background: #e8f0e8; color: var(--green); }
+
+    /* Equipo humano */
+    .team-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .team-card {
+      background: var(--coffee-dark);
+      color: var(--cream);
+      padding: 1.75rem;
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    .team-card .big-num {
+      font-family: 'Fraunces', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent-soft);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-card h4 {
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .team-card p {
+      font-size: 0.9rem;
+      opacity: 0.88;
+    }
+
+    .pending-price {
+      background: #fff8e6;
+      border: 2px dashed var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--coffee-medium);
+    }
+
+    .pending-price strong {
+      color: var(--accent);
+    }
+
+    /* Paquetes */
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .package-card {
+      background: var(--white);
+      border: 2px solid var(--cream-dark);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .package-card.featured {
+      border-color: var(--accent);
+      transform: scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .package-card.featured::before {
+      content: 'Recomendado';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .package-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .package-people {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .package-price {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--coffee-dark);
+      margin-bottom: 1rem;
+    }
+
+    .package-price small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .package-list {
+      list-style: none;
+      font-size: 0.95rem;
+    }
+
+    .package-list li {
+      padding: 0.4rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .package-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .includes-note {
+      background: var(--cream);
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-sm);
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .includes-note span:first-child {
+      font-size: 1.3rem;
+    }
+
+    /* Por qué elegir */
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .benefit {
+      padding: 1.5rem;
+      background: var(--cream);
+      border-radius: var(--radius-sm);
+    }
+
+    .benefit h4 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .benefit p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* SST alignment */
+    .sst-banner {
+      background: linear-gradient(90deg, var(--green) 0%, #3d5a35 100%);
+      color: var(--white);
+      padding: 2.5rem 2rem;
+      border-radius: var(--radius);
+      margin: 2rem 0;
+    }
+
+    .sst-banner h3 {
+      color: var(--white);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .sst-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .sst-pill {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+
+    /* Contacto */
+    .contact {
+      background: var(--coffee-dark);
+      color: var(--cream);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .contact h2 {
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-sub {
+      opacity: 0.85;
+      margin-bottom: 2rem;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      text-decoration: none;
+      color: var(--cream);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s;
+    }
+
+    .contact-item:hover {
+      opacity: 0.8;
+    }
+
+    .contact-item .ci-icon {
+      font-size: 1.8rem;
+    }
+
+    .contact-item strong {
+      font-size: 1.05rem;
+    }
+
+    .contact-item span {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .footer-note {
+      font-size: 0.85rem;
+      opacity: 0.6;
+      margin-top: 2rem;
+    }
+
+    /* Triangulación visual */
+    .triangle-demo {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .cup {
+      width: 80px;
+      text-align: center;
+    }
+
+    .cup-visual {
+      width: 60px;
+      height: 70px;
+      margin: 0 auto 0.5rem;
+      background: linear-gradient(180deg, #6f4e37 0%, #4a3728 100%);
+      border-radius: 0 0 20px 20px;
+      border: 3px solid var(--cream-dark);
+      position: relative;
+    }
+
+    .cup-visual::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 12px;
+      background: var(--cream-dark);
+      border-radius: 4px 4px 0 0;
+    }
+
+    .cup.different .cup-visual {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(200, 121, 65, 0.4);
+    }
+
+    .cup-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .cup.different .cup-label {
+      color: var(--accent);
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 3rem 1.25rem 4rem; }
+      .container { padding: 0 1.25rem; }
+      section { padding: 3rem 0; }
+      .workshop-header, .workshop-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .package-card.featured { transform: none; }
+    }
+
+    @media print {
+      .hero { padding: 2rem; }
+      .workshop { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+      .contact { background: var(--coffee-dark); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="badge">Propuesta comercial · Bienestar empresarial</div>
+      <h1>Café que <span>Inspira</span></h1>
+      <p class="hero-sub">
+        Talleres sensoriales de catación y preparación manual para empresas en Cali.
+        Experiencias lúdicas, cero tecnicismos innecesarios y mucho café de origen colombiano.
+      </p>
+      <div class="hero-meta">
+        <span>☕ Elixir Café</span>
+        <span>📋 NIT 1061539845</span>
+        <span>🏢 Programas SST & bienestar laboral</span>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <p class="section-label">Antes de empezar</p>
+      <h2 class="section-title">Hablemos de café… sin complicarnos</h2>
+      <p class="section-intro">
+        Sabemos que no todos en la empresa son expertos en café. Por eso, antes de los talleres,
+        traducimos el lenguaje del barista a palabras que cualquiera entiende — y se divierte aprendiendo.
+      </p>
+
+      <div class="glossary-grid">
+        <div class="term-card">
+          <span class="term-emoji">👃</span>
+          <h4>Catación</h4>
+          <p class="simple">En criollo: "probar café como los profesionales"</p>
+          <p>Usamos los sentidos — olfato, gusto y tacto — para descubrir sabores, aromas y texturas. No es una clase aburrida: es un juego sensorial.</p>
+        </div>
+        <div class="term-card">
+          <span class="term-emoji">🔺</span>
+          <h4>Triangulación</h4>
+          <p class="simple">En criollo: "encuentra la taza diferente"</p>
+          <p>Se presentan 3 tazas: 2 tienen el mismo café y 1 es distinta. El reto es identificar cuál no pertenece al grupo. Así entrenamos el paladar de forma divertida.</p>
+        </div>
+        <div class="term-card">
+          <span class="term-emoji">🌡️</span>
+          <h4>Parámetros de extracción</h4>
+          <p class="simple">En criollo: "la receta invisible del café rico"</p>
+          <p>Temperatura del agua, tiempo de contacto, molienda y proporción café-agua. Los explicamos con analogías sencillas — como cocinar pasta o preparar té.</p>
+        </div>
+        <div class="term-card">
+          <span class="term-emoji">☕</span>
+          <h4>Perfil sensorial</h4>
+          <p class="simple">En criollo: "la personalidad del café"</p>
+          <p>¿Es dulce, ácido, amargo, afrutado? Cada café tiene un "carácter" que aprendemos a reconocer — como distinguir sabores en un helado.</p>
+        </div>
+        <div class="term-card">
+          <span class="term-emoji">🫖</span>
+          <h4>Preparación manual</h4>
+          <p class="simple">En criollo: "hacer café con tus manos, sin máquina automática"</p>
+          <p>Métodos como V60, Chemex o prensa francesa. El participante controla cada paso y ve cómo pequeños cambios transforman el sabor final.</p>
+        </div>
+        <div class="term-card">
+          <span class="term-emoji">🏆</span>
+          <h4>Barista</h4>
+          <p class="simple">En criollo: "el guía experto que hace que todo sea fácil"</p>
+          <p>Profesional certificado que facilita la experiencia, explica sin abrumar y asegura que cada participante se sienta cómodo — sin importar su nivel previo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--cream-dark);">
+    <div class="container">
+      <p class="section-label">Taller 1</p>
+      <h2 class="section-title">Catación por Triangulación</h2>
+      <p class="section-intro">
+        El primer taller es una experiencia guiada donde los colaboradores aprenden a "leer" el café
+        jugando. Empezamos con una capacitación breve y luego ponemos a prueba el paladar en equipo.
+      </p>
+
+      <article class="workshop">
+        <div class="workshop-header">
+          <div class="workshop-num">1</div>
+          <div class="workshop-title-block">
+            <h3>Catación Lúdica — "Encuentra la Taza Diferente"</h3>
+            <p class="workshop-tagline">Triangulación guiada · Capacitación + juego sensorial</p>
+          </div>
+          <div class="workshop-duration">⏱ 1.5 – 2 horas</div>
+        </div>
+        <div class="workshop-body">
+          <p>
+            Imagina un juego de mesa, pero con café de verdad. En este taller enseñamos paso a paso
+            cómo funciona la triangulación — el método que usan los catadores profesionales para
+            afinar su paladar — y luego lo convertimos en una competencia amistosa entre equipos.
+          </p>
+
+          <div class="highlight-box">
+            <strong>¿Cómo funciona la triangulación?</strong> Se sirven 3 tazas numeradas.
+            Dos contienen el mismo café; una es diferente. Los participantes prueban, discuten en
+            equipo y votan cuál es "la intrusa". Simple de entender, desafiante de dominar.
+          </div>
+
+          <div class="triangle-demo" aria-hidden="true">
+            <div class="cup">
+              <div class="cup-visual"></div>
+              <div class="cup-label">Taza A</div>
+            </div>
+            <div class="cup">
+              <div class="cup-visual"></div>
+              <div class="cup-label">Taza B</div>
+            </div>
+            <div class="cup different">
+              <div class="cup-visual"></div>
+              <div class="cup-label">Taza C ★</div>
+            </div>
+          </div>
+
+          <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Dinámica del taller</h4>
+          <ol class="steps">
+            <li><strong>Bienvenida sensorial</strong> — Presentación del café de origen, olores de referencia (frutas, chocolate, caramelo) y calentamiento del paladar.</li>
+            <li><strong>Mini capacitación</strong> — Cómo catar correctamente: olfato, sorbo, retroolfato. Explicamos equipos, insumos y por qué cada detalle importa.</li>
+            <li><strong>Parámetros sin miedo</strong> — Temperatura, molienda, ratio y tiempo explicados con ejemplos cotidianos. Sin fórmulas intimidantes.</li>
+            <li><strong>Ronda de triangulación</strong> — Equipos compiten por identificar la taza diferente. Puntuación, risas y aprendizaje garantizado.</li>
+            <li><strong>Cierre y certificado</strong> — Resumen de lo aprendido y entrega de certificado de participación.</li>
+          </ol>
+
+          <h4 style="margin: 2rem 0 1rem; font-size: 1.1rem;">Equipos necesarios</h4>
+          <table class="resource-table">
+            <thead>
+              <tr>
+                <th>Equipo</th>
+                <th>Para qué sirve</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Sets de catación (tazas tipo SCA)</td>
+                <td>Vasos estandarizados para comparar muestras</td>
+                <td>1 set por mesa (3–4 personas)</td>
+              </tr>
+              <tr>
+                <td>Cucharas de catación</td>
+                <td>Probar el café sin contaminar la taza</td>
+                <td>1 por participante</td>
+              </tr>
+              <tr>
+                <td>Termo / hervidor de precisión</td>
+                <td>Agua a temperatura controlada (~93 °C)</td>
+                <td>1–2 unidades</td>
+              </tr>
+              <tr>
+                <td>Balanza digital</td>
+                <td>Medir café y agua con exactitud</td>
+                <td>1 por estación</td>
+              </tr>
+              <tr>
+                <td>Molino (si se muele en sitio)</td>
+                <td>Demostrar impacto de la molienda</td>
+                <td>1 unidad</td>
+              </tr>
+              <tr>
+                <td>Cartilla / hoja de puntuación</td>
+                <td>Registrar percepciones y respuestas</td>
+                <td>1 por participante</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin: 2rem 0 1rem; font-size: 1.1rem;">Insumos por evento</h4>
+          <table class="resource-table">
+            <thead>
+              <tr>
+                <th>Insumo</th>
+                <th>Detalle</th>
+                <th>Notas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Café de origen (mín. 2 variedades)</td>
+                <td>Para las triangulaciones y muestras</td>
+                <td><span class="tag tag-essential">Esencial</span></td>
+              </tr>
+              <tr>
+                <td>Agua filtrada</td>
+                <td>~15 L por evento de 15 personas</td>
+                <td><span class="tag tag-essential">Esencial</span></td>
+              </tr>
+              <tr>
+                <td>Kit sensorial de referencia</td>
+                <td>Frutas, chocolate, especias para calibrar olfato</td>
+                <td><span class="tag tag-optional">Recomendado</span></td>
+              </tr>
+              <tr>
+                <td>Vasos de agua y servilletas</td>
+                <td>Limpieza de paladar entre muestras</td>
+                <td><span class="tag tag-essential">Esencial</span></td>
+              </tr>
+              <tr>
+                <td>Certificados impresos</td>
+                <td>Reconocimiento de participación</td>
+                <td><span class="tag tag-essential">Esencial</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="includes-grid">
+            <div class="include-item"><span class="icon">🎯</span> Estación sensorial completa</div>
+            <div class="include-item"><span class="icon">📋</span> Guía de catador simplificada</div>
+            <div class="include-item"><span class="icon">👥</span> Dinámica grupal por equipos</div>
+            <div class="include-item"><span class="icon">🏅</span> Premiación simbólica al equipo ganador</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="section-label">Taller 2</p>
+      <h2 class="section-title">Concurso de Preparación Manual</h2>
+      <p class="section-intro">
+        Después de entrenar el paladar, llega el momento de poner manos a la obra. Los colaboradores
+        compiten en un torneo amistoso preparando café con métodos manuales — y un jurado (nuestros baristas)
+        elige la mejor taza.
+      </p>
+
+      <article class="workshop">
+        <div class="workshop-header">
+          <div class="workshop-num">2</div>
+          <div class="workshop-title-block">
+            <h3>Preparación Manual — "Tu Mejor Taza"</h3>
+            <p class="workshop-tagline">Torneo vivencial · V60, Chemex y prensa francesa</p>
+          </div>
+          <div class="workshop-duration">⏱ 1.5 – 2 horas</div>
+        </div>
+        <div class="workshop-body">
+          <p>
+            Aquí el café deja de ser misterio y se convierte en habilidad. Cada participante (o equipo)
+            recibe un método manual, los insumos y la guía de un barista. El objetivo: preparar la taza
+            más balanceada y deliciosa. Sin presión de barista profesional — pura diversión con propósito.
+          </p>
+
+          <div class="highlight-box">
+            <strong>¿Por qué preparación manual?</strong> Porque ver el proceso completo — desde la molienda
+            hasta el primer sorbo — hace tangible lo que en catación solo se percibe. Es la pieza perfecta
+            después de la triangulación.
+          </div>
+
+          <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Dinámica del taller</h4>
+          <ol class="steps">
+            <li><strong>Demo en vivo</strong> — Un barista prepara una taza mientras explica cada paso con calma y humor.</li>
+            <li><strong>Práctica guiada</strong> — Cada equipo recibe su método (V60, Chemex o prensa francesa) y practica con supervisión.</li>
+            <li><strong>Ronda de competencia</strong> — Tiempo limitado, reglas claras y mucha emoción. Los jueces evalúan sabor, aroma y presentación.</li>
+            <li><strong>Premiación</strong> — Reconocimiento simbólico al mejor café del día. Foto grupal incluida.</li>
+          </ol>
+
+          <h4 style="margin: 2rem 0 1rem; font-size: 1.1rem;">Equipos necesarios</h4>
+          <table class="resource-table">
+            <thead>
+              <tr>
+                <th>Equipo</th>
+                <th>Para qué sirve</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>V60 + filtros</td>
+                <td>Goteo manual, ideal para competencias</td>
+                <td>1 por equipo</td>
+              </tr>
+              <tr>
+                <td>Chemex + filtros</td>
+                <td>Alternativa elegante de goteo</td>
+                <td>1 por equipo (opcional)</td>
+              </tr>
+              <tr>
+                <td>Prensa francesa</td>
+                <td>Método de inmersión, fácil para principiantes</td>
+                <td>1 por equipo</td>
+              </tr>
+              <tr>
+                <td>Hervidor de cuello de ganso</td>
+                <td>Control del vertido de agua</td>
+                <td>1 por estación</td>
+              </tr>
+              <tr>
+                <td>Molino manual o eléctrico</td>
+                <td>Molienda fresca en el momento</td>
+                <td>1–2 unidades</td>
+              </tr>
+              <tr>
+                <td>Balanza con timer</td>
+                <td>Precisión en café, agua y tiempo</td>
+                <td>1 por estación</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin: 2rem 0 1rem; font-size: 1.1rem;">Insumos por evento</h4>
+          <table class="resource-table">
+            <thead>
+              <tr>
+                <th>Insumo</th>
+                <th>Detalle</th>
+                <th>Notas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Café de origen molido y en grano</td>
+                <td>250–400 g según número de participantes</td>
+                <td><span class="tag tag-essential">Esencial</span></td>
+              </tr>
+              <tr>
+                <td>Filtros de papel (V60 / Chemex)</td>
+                <td>2–3 por participante</td>
+                <td><span class="tag tag-essential">Esencial</span></td>
+              </tr>
+              <tr>
+                <td>Agua filtrada</td>
+                <td>~20 L para 15–25 personas</td>
+                <td><span class="tag tag-essential">Esencial</span></td>
+              </tr>
+              <tr>
+                <td>Premio simbólico</td>
+                <td>Bolsa de café, mug o diploma</td>
+                <td><span class="tag tag-optional">Recomendado</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="includes-grid">
+            <div class="include-item"><span class="icon">🫖</span> Métodos de preparación completos</div>
+            <div class="include-item"><span class="icon">⚖️</span> Jueces baristas certificados</div>
+            <div class="include-item"><span class="icon">☕</span> Café premium de origen colombiano</div>
+            <div class="include-item"><span class="icon">🎁</span> Premiación simbólica incluida</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section style="background: var(--white);">
+    <div class="container">
+      <p class="section-label">Equipo & logística</p>
+      <h2 class="section-title">Personal y tiempos por evento</h2>
+      <p class="section-intro">
+        Cada taller requiere un equipo mínimo de profesionales para garantizar calidad,
+        seguridad y una experiencia fluida — sin importar el tamaño del grupo.
+      </p>
+
+      <div class="team-box">
+        <div class="team-card">
+          <div class="big-num">2</div>
+          <h4>Baristas por evento</h4>
+          <p>Uno facilita y capacita; el otro apoya estaciones, logística y evaluación. Ratio ideal para grupos de hasta 25 personas.</p>
+        </div>
+        <div class="team-card">
+          <div class="big-num">1.5–2h</div>
+          <h4>Duración por taller</h4>
+          <p>Catación y preparación pueden realizarse el mismo día (con descanso) o en jornadas separadas según la agenda de la empresa.</p>
+        </div>
+      </div>
+
+      <div class="pending-price">
+        <strong>📌 Tarifa de baristas por evento:</strong> pendiente de definición.
+        Este valor se calculará según duración, desplazamiento y número de estaciones activas.
+        Contáctanos para una cotización personalizada.
+      </div>
+
+      <div class="includes-note">
+        <span>✅</span>
+        <div>
+          <strong>Todos los paquetes incluyen:</strong> transporte local en Cali, personal barista,
+          insumos premium, equipos de preparación y catación, certificados de participación
+          y adaptación al perfil de los empleados (operativos, administrativos o mixtos).
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="section-label">Inversión</p>
+      <h2 class="section-title">Paquetes para empresas</h2>
+      <p class="section-intro">
+        Tres opciones base, personalizables según número de colaboradores, espacio disponible
+        y objetivos del programa de bienestar.
+      </p>
+
+      <div class="packages">
+        <div class="package-card">
+          <div class="package-name">Esencial</div>
+          <div class="package-people">Hasta 15 personas</div>
+          <div class="package-price">$1.500.000 <small>COP</small></div>
+          <ul class="package-list">
+            <li>Taller 1: Catación por triangulación</li>
+            <li>2 baristas · 1.5–2 horas</li>
+            <li>Equipos, insumos y certificados</li>
+            <li>Transporte local incluido</li>
+          </ul>
+        </div>
+        <div class="package-card featured">
+          <div class="package-name">Premium</div>
+          <div class="package-people">Hasta 25 personas</div>
+          <div class="package-price">$2.000.000 <small>COP</small></div>
+          <ul class="package-list">
+            <li>Taller 1: Catación por triangulación</li>
+            <li>Taller 2: Preparación manual</li>
+            <li>2 baristas · jornada completa</li>
+            <li>Concurso con premiación</li>
+            <li>Transporte local incluido</li>
+          </ul>
+        </div>
+        <div class="package-card">
+          <div class="package-name">Experiencial PRO</div>
+          <div class="package-people">Hasta 40 personas</div>
+          <div class="package-price">$3.300.000 <small>COP</small></div>
+          <ul class="package-list">
+            <li>Catación + Preparación manual</li>
+            <li>+ Team Building "El Arte del Café"</li>
+            <li>2 baristas · experiencia extendida</li>
+            <li>Reconocimiento grupal</li>
+            <li>Transporte local incluido</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+        Precios válidos para eventos en Cali. Para otras ciudades, consultar costos adicionales de desplazamiento.
+      </p>
+    </div>
+  </section>
+
+  <section style="background: var(--cream-dark);">
+    <div class="container">
+      <p class="section-label">Alineación corporativa</p>
+      <h2 class="section-title">Bienestar que sí se siente</h2>
+
+      <div class="sst-banner">
+        <h3>Integración con Seguridad y Salud en el Trabajo (SST)</h3>
+        <p style="margin-bottom: 1.25rem; opacity: 0.92;">
+          Estos talleres no son solo café: son herramientas de bienestar laboral que fortalecen
+          equipos, reducen estrés y generan momentos de conexión auténtica entre colaboradores.
+        </p>
+        <div class="sst-pills">
+          <span class="sst-pill">🧘 Reducción de estrés</span>
+          <span class="sst-pill">🤝 Trabajo en equipo</span>
+          <span class="sst-pill">🎉 Motivación y pertenencia</span>
+          <span class="sst-pill">🧠 Estimulación sensorial</span>
+          <span class="sst-pill">💬 Comunicación activa</span>
+        </div>
+      </div>
+
+      <div class="benefits">
+        <div class="benefit">
+          <h4>☕ Origen colombiano</h4>
+          <p>Café de alta calidad con identidad local. Cada taza cuenta una historia que conecta con el orgullo de lo nuestro.</p>
+        </div>
+        <div class="benefit">
+          <h4>🎓 Enfoque vivencial</h4>
+          <p>No es una charla teórica. Es hacer, probar, equivocarse y aprender — con guía profesional en cada paso.</p>
+        </div>
+        <div class="benefit">
+          <h4>🔧 A medida</h4>
+          <p>Adaptamos duración, dinámicas y lenguaje al perfil de su equipo. Operativos, administrativos o mixtos.</p>
+        </div>
+        <div class="benefit">
+          <h4>✨ Experiencias memorables</h4>
+          <p>El tipo de actividad que los empleados recuerdan y comentan. Bienestar que se vive, no que se documenta en un papel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="contact">
+    <div class="container">
+      <h2>¿Agendamos una cata?</h2>
+      <p class="contact-sub">Cuéntanos sobre tu empresa y diseñamos la experiencia ideal para tu equipo.</p>
+
+      <div class="contact-grid">
+        <a href="tel:+573176011141" class="contact-item">
+          <span class="ci-icon">📞</span>
+          <strong>317 601 1141</strong>
+          <span>Llamada o WhatsApp</span>
+        </a>
+        <a href="mailto:elixircafecali@gmail.com" class="contact-item">
+          <span class="ci-icon">✉️</span>
+          <strong>elixircafecali@gmail.com</strong>
+          <span>Escríbenos</span>
+        </a>
+        <a href="https://instagram.com/tiendacafeelixir" class="contact-item" target="_blank" rel="noopener">
+          <span class="ci-icon">📸</span>
+          <strong>@tiendacafeelixir</strong>
+          <span>Instagram</span>
+        </a>
+      </div>
+
+      <p><strong>Elixir Café</strong> · NIT 1061539845 · Persona Natural</p>
+      <p class="footer-note">Propuesta comercial · Cali, Colombia · 2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>
