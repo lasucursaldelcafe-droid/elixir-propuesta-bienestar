@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Talleres corporativos de catación y preparación manual de café para empresas en Cali. Experiencias lúdicas de bienestar laboral por Elixir Café.">
   <meta name="author" content="Elixir Café">
   <meta name="theme-color" content="#2c1810">
@@ -47,14 +47,23 @@
 
     html {
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     body {
-      font-family: 'DM Sans', system-ui, sans-serif;
+      font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: var(--cream);
       color: var(--text);
       line-height: 1.65;
-      font-size: 17px;
+      font-size: clamp(15px, 2.4vw, 17px);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img, svg, video {
+      max-width: 100%;
+      height: auto;
     }
 
     h1, h2, h3, h4 {
@@ -67,7 +76,7 @@
     .hero {
       background: linear-gradient(135deg, var(--coffee-dark) 0%, var(--coffee-medium) 50%, #3d2817 100%);
       color: var(--cream);
-      padding: 4rem 2rem 5rem;
+      padding: max(3rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right)) 4rem max(1.25rem, env(safe-area-inset-left));
       position: relative;
       overflow: hidden;
     }
@@ -114,7 +123,7 @@
     }
 
     .hero-sub {
-      font-size: 1.15rem;
+      font-size: clamp(1rem, 2.8vw, 1.15rem);
       opacity: 0.92;
       max-width: 640px;
       margin-bottom: 2rem;
@@ -123,8 +132,8 @@
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.5rem;
-      font-size: 0.95rem;
+      gap: 0.75rem 1.5rem;
+      font-size: clamp(0.85rem, 2.2vw, 0.95rem);
       opacity: 0.85;
     }
 
@@ -135,13 +144,29 @@
     }
 
     .container {
-      max-width: 960px;
+      width: min(960px, 100%);
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 max(1.25rem, env(safe-area-inset-right)) 0 max(1.25rem, env(safe-area-inset-left));
     }
 
     section {
-      padding: 4rem 0;
+      padding: clamp(2.5rem, 6vw, 4rem) 0;
+    }
+
+    .subheading {
+      margin-bottom: 1rem;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+    }
+
+    .subheading-spaced {
+      margin: 2rem 0 1rem;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+    }
+
+    .footnote {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
     section:nth-child(even) {
@@ -184,9 +209,11 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .term-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
+    @media (hover: hover) {
+      .term-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+      }
     }
 
     .term-emoji {
@@ -252,8 +279,9 @@
     }
 
     .workshop-title-block h3 {
-      font-size: 1.6rem;
+      font-size: clamp(1.25rem, 3.5vw, 1.6rem);
       margin-bottom: 0.35rem;
+      word-wrap: break-word;
     }
 
     .workshop-tagline {
@@ -269,6 +297,7 @@
       font-size: 0.9rem;
       color: var(--coffee-medium);
       white-space: nowrap;
+      align-self: flex-start;
     }
 
     .workshop-body {
@@ -345,15 +374,21 @@
     }
 
     /* Equipos e insumos */
+    .table-wrapper {
+      width: 100%;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+    }
+
     .resource-table {
       width: 100%;
+      min-width: 520px;
       border-collapse: collapse;
-      margin: 1.5rem 0;
-      font-size: 0.95rem;
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
       background: var(--white);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      box-shadow: var(--shadow);
     }
 
     .resource-table th,
@@ -376,8 +411,10 @@
       border-bottom: none;
     }
 
-    .resource-table tr:hover td {
-      background: var(--cream);
+    @media (hover: hover) {
+      .resource-table tr:hover td {
+        background: var(--cream);
+      }
     }
 
     .tag {
@@ -494,10 +531,11 @@
 
     .package-price {
       font-family: 'Fraunces', serif;
-      font-size: 2rem;
+      font-size: clamp(1.6rem, 4vw, 2rem);
       font-weight: 700;
       color: var(--coffee-dark);
       margin-bottom: 1rem;
+      word-break: break-word;
     }
 
     .package-price small {
@@ -595,7 +633,7 @@
     .contact {
       background: var(--coffee-dark);
       color: var(--cream);
-      padding: 4rem 2rem;
+      padding: clamp(2.5rem, 6vw, 4rem) max(1.25rem, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
       text-align: center;
     }
 
@@ -625,10 +663,20 @@
       align-items: center;
       gap: 0.5rem;
       transition: opacity 0.2s;
+      min-width: min(100%, 220px);
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      word-break: break-word;
     }
 
-    .contact-item:hover {
-      opacity: 0.8;
+    @media (hover: hover) {
+      .contact-item:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .contact-item:active {
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .contact-item .ci-icon {
@@ -701,12 +749,259 @@
       color: var(--accent);
     }
 
+    /* Tablet */
+    @media (max-width: 900px) {
+      .glossary-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
+
+      .packages {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .package-card.featured {
+        transform: none;
+        order: -1;
+      }
+    }
+
+    /* Mobile */
     @media (max-width: 640px) {
-      .hero { padding: 3rem 1.25rem 4rem; }
-      .container { padding: 0 1.25rem; }
-      section { padding: 3rem 0; }
-      .workshop-header, .workshop-body { padding-left: 1.25rem; padding-right: 1.25rem; }
-      .package-card.featured { transform: none; }
+      .badge {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.85rem;
+      }
+
+      .hero-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .section-intro {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .glossary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .workshop-header {
+        padding: 1.25rem 1.25rem 1rem;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .workshop-body {
+        padding: 0 1.25rem 1.5rem;
+      }
+
+      .workshop-num {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+
+      .workshop-duration {
+        align-self: stretch;
+        text-align: center;
+        white-space: normal;
+      }
+
+      .highlight-box {
+        padding: 1rem 1.15rem;
+        margin: 1.25rem 0;
+      }
+
+      .steps li {
+        padding-left: 2.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .steps li::before {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.8rem;
+      }
+
+      .includes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .table-wrapper {
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+      }
+
+      .table-wrapper::after {
+        content: '← Desliza para ver más →';
+        display: block;
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        padding: 0.5rem 0 0;
+      }
+
+      .resource-table {
+        min-width: 0;
+      }
+
+      .table-wrapper::after {
+        display: none;
+      }
+
+      .resource-table thead {
+        display: none;
+      }
+
+      .resource-table,
+      .resource-table tbody,
+      .resource-table tr,
+      .resource-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .resource-table tr {
+        margin-bottom: 0.85rem;
+        border: 1px solid var(--cream-dark);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        background: var(--white);
+      }
+
+      .resource-table td {
+        padding: 0.65rem 1rem;
+        border-bottom: 1px solid var(--cream-dark);
+        text-align: left;
+      }
+
+      .resource-table td:last-child {
+        border-bottom: none;
+      }
+
+      .resource-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 600;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        margin-bottom: 0.25rem;
+      }
+
+      .team-box {
+        grid-template-columns: 1fr;
+      }
+
+      .team-card .big-num {
+        font-size: clamp(2.2rem, 10vw, 3rem);
+      }
+
+      .package-card {
+        padding: 1.5rem;
+      }
+
+      .package-card.featured::before {
+        font-size: 0.7rem;
+        top: -10px;
+      }
+
+      .includes-note {
+        flex-direction: column;
+        padding: 1rem 1.15rem;
+      }
+
+      .sst-banner {
+        padding: 1.5rem 1.15rem;
+      }
+
+      .sst-banner h3 {
+        font-size: 1.15rem;
+      }
+
+      .sst-pill {
+        font-size: 0.82rem;
+        padding: 0.45rem 0.85rem;
+      }
+
+      .benefits {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+      }
+
+      .contact-item {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .triangle-demo {
+        gap: 0.75rem;
+      }
+
+      .cup {
+        width: 70px;
+      }
+
+      .cup-visual {
+        width: 52px;
+        height: 60px;
+      }
+    }
+
+    /* Small phones */
+    @media (max-width: 380px) {
+      .hero h1 {
+        font-size: 1.85rem;
+      }
+
+      .package-price {
+        font-size: 1.45rem;
+      }
+    }
+
+    /* Large screens */
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 1040px;
+      }
+
+      .hero {
+        padding-top: 5rem;
+        padding-bottom: 5.5rem;
+      }
+    }
+
+    /* Landscape phones */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero {
+        padding-top: 2rem;
+        padding-bottom: 2.5rem;
+      }
+
+      section {
+        padding: 2rem 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
 
     @media print {
@@ -830,7 +1125,7 @@
             </div>
           </div>
 
-          <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Dinámica del taller</h4>
+          <h4 class="subheading">Dinámica del taller</h4>
           <ol class="steps">
             <li><strong>Bienvenida sensorial</strong> — Presentación del café de origen, olores de referencia (frutas, chocolate, caramelo) y calentamiento del paladar.</li>
             <li><strong>Mini capacitación</strong> — Cómo catar correctamente: olfato, sorbo, retroolfato. Explicamos equipos, insumos y por qué cada detalle importa.</li>
@@ -839,7 +1134,8 @@
             <li><strong>Cierre y certificado</strong> — Resumen de lo aprendido y entrega de certificado de participación.</li>
           </ol>
 
-          <h4 style="margin: 2rem 0 1rem; font-size: 1.1rem;">Equipos necesarios</h4>
+          <h4 class="subheading-spaced">Equipos necesarios</h4>
+          <div class="table-wrapper">
           <table class="resource-table">
             <thead>
               <tr>
@@ -850,39 +1146,41 @@
             </thead>
             <tbody>
               <tr>
-                <td>Sets de catación (tazas tipo SCA)</td>
-                <td>Vasos estandarizados para comparar muestras</td>
-                <td>1 set por mesa (3–4 personas)</td>
+                <td data-label="Equipo">Sets de catación (tazas tipo SCA)</td>
+                <td data-label="Para qué sirve">Vasos estandarizados para comparar muestras</td>
+                <td data-label="Cantidad">1 set por mesa (3–4 personas)</td>
               </tr>
               <tr>
-                <td>Cucharas de catación</td>
-                <td>Probar el café sin contaminar la taza</td>
-                <td>1 por participante</td>
+                <td data-label="Equipo">Cucharas de catación</td>
+                <td data-label="Para qué sirve">Probar el café sin contaminar la taza</td>
+                <td data-label="Cantidad">1 por participante</td>
               </tr>
               <tr>
-                <td>Termo / hervidor de precisión</td>
-                <td>Agua a temperatura controlada (~93 °C)</td>
-                <td>1–2 unidades</td>
+                <td data-label="Equipo">Termo / hervidor de precisión</td>
+                <td data-label="Para qué sirve">Agua a temperatura controlada (~93 °C)</td>
+                <td data-label="Cantidad">1–2 unidades</td>
               </tr>
               <tr>
-                <td>Balanza digital</td>
-                <td>Medir café y agua con exactitud</td>
-                <td>1 por estación</td>
+                <td data-label="Equipo">Balanza digital</td>
+                <td data-label="Para qué sirve">Medir café y agua con exactitud</td>
+                <td data-label="Cantidad">1 por estación</td>
               </tr>
               <tr>
-                <td>Molino (si se muele en sitio)</td>
-                <td>Demostrar impacto de la molienda</td>
-                <td>1 unidad</td>
+                <td data-label="Equipo">Molino (si se muele en sitio)</td>
+                <td data-label="Para qué sirve">Demostrar impacto de la molienda</td>
+                <td data-label="Cantidad">1 unidad</td>
               </tr>
               <tr>
-                <td>Cartilla / hoja de puntuación</td>
-                <td>Registrar percepciones y respuestas</td>
-                <td>1 por participante</td>
+                <td data-label="Equipo">Cartilla / hoja de puntuación</td>
+                <td data-label="Para qué sirve">Registrar percepciones y respuestas</td>
+                <td data-label="Cantidad">1 por participante</td>
               </tr>
             </tbody>
           </table>
+          </div>
 
-          <h4 style="margin: 2rem 0 1rem; font-size: 1.1rem;">Insumos por evento</h4>
+          <h4 class="subheading-spaced">Insumos por evento</h4>
+          <div class="table-wrapper">
           <table class="resource-table">
             <thead>
               <tr>
@@ -893,32 +1191,33 @@
             </thead>
             <tbody>
               <tr>
-                <td>Café de origen (mín. 2 variedades)</td>
-                <td>Para las triangulaciones y muestras</td>
-                <td><span class="tag tag-essential">Esencial</span></td>
+                <td data-label="Insumo">Café de origen (mín. 2 variedades)</td>
+                <td data-label="Detalle">Para las triangulaciones y muestras</td>
+                <td data-label="Notas"><span class="tag tag-essential">Esencial</span></td>
               </tr>
               <tr>
-                <td>Agua filtrada</td>
-                <td>~15 L por evento de 15 personas</td>
-                <td><span class="tag tag-essential">Esencial</span></td>
+                <td data-label="Insumo">Agua filtrada</td>
+                <td data-label="Detalle">~15 L por evento de 15 personas</td>
+                <td data-label="Notas"><span class="tag tag-essential">Esencial</span></td>
               </tr>
               <tr>
-                <td>Kit sensorial de referencia</td>
-                <td>Frutas, chocolate, especias para calibrar olfato</td>
-                <td><span class="tag tag-optional">Recomendado</span></td>
+                <td data-label="Insumo">Kit sensorial de referencia</td>
+                <td data-label="Detalle">Frutas, chocolate, especias para calibrar olfato</td>
+                <td data-label="Notas"><span class="tag tag-optional">Recomendado</span></td>
               </tr>
               <tr>
-                <td>Vasos de agua y servilletas</td>
-                <td>Limpieza de paladar entre muestras</td>
-                <td><span class="tag tag-essential">Esencial</span></td>
+                <td data-label="Insumo">Vasos de agua y servilletas</td>
+                <td data-label="Detalle">Limpieza de paladar entre muestras</td>
+                <td data-label="Notas"><span class="tag tag-essential">Esencial</span></td>
               </tr>
               <tr>
-                <td>Certificados impresos</td>
-                <td>Reconocimiento de participación</td>
-                <td><span class="tag tag-essential">Esencial</span></td>
+                <td data-label="Insumo">Certificados impresos</td>
+                <td data-label="Detalle">Reconocimiento de participación</td>
+                <td data-label="Notas"><span class="tag tag-essential">Esencial</span></td>
               </tr>
             </tbody>
           </table>
+          </div>
 
           <div class="includes-grid">
             <div class="include-item"><span class="icon">🎯</span> Estación sensorial completa</div>
@@ -963,7 +1262,7 @@
             después de la triangulación.
           </div>
 
-          <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Dinámica del taller</h4>
+          <h4 class="subheading">Dinámica del taller</h4>
           <ol class="steps">
             <li><strong>Demo en vivo</strong> — Un barista prepara una taza mientras explica cada paso con calma y humor.</li>
             <li><strong>Práctica guiada</strong> — Cada equipo recibe su método (V60, Chemex o prensa francesa) y practica con supervisión.</li>
@@ -971,7 +1270,8 @@
             <li><strong>Premiación</strong> — Reconocimiento simbólico al mejor café del día. Foto grupal incluida.</li>
           </ol>
 
-          <h4 style="margin: 2rem 0 1rem; font-size: 1.1rem;">Equipos necesarios</h4>
+          <h4 class="subheading-spaced">Equipos necesarios</h4>
+          <div class="table-wrapper">
           <table class="resource-table">
             <thead>
               <tr>
@@ -982,39 +1282,41 @@
             </thead>
             <tbody>
               <tr>
-                <td>V60 + filtros</td>
-                <td>Goteo manual, ideal para competencias</td>
-                <td>1 por equipo</td>
+                <td data-label="Equipo">V60 + filtros</td>
+                <td data-label="Para qué sirve">Goteo manual, ideal para competencias</td>
+                <td data-label="Cantidad">1 por equipo</td>
               </tr>
               <tr>
-                <td>Chemex + filtros</td>
-                <td>Alternativa elegante de goteo</td>
-                <td>1 por equipo (opcional)</td>
+                <td data-label="Equipo">Chemex + filtros</td>
+                <td data-label="Para qué sirve">Alternativa elegante de goteo</td>
+                <td data-label="Cantidad">1 por equipo (opcional)</td>
               </tr>
               <tr>
-                <td>Prensa francesa</td>
-                <td>Método de inmersión, fácil para principiantes</td>
-                <td>1 por equipo</td>
+                <td data-label="Equipo">Prensa francesa</td>
+                <td data-label="Para qué sirve">Método de inmersión, fácil para principiantes</td>
+                <td data-label="Cantidad">1 por equipo</td>
               </tr>
               <tr>
-                <td>Hervidor de cuello de ganso</td>
-                <td>Control del vertido de agua</td>
-                <td>1 por estación</td>
+                <td data-label="Equipo">Hervidor de cuello de ganso</td>
+                <td data-label="Para qué sirve">Control del vertido de agua</td>
+                <td data-label="Cantidad">1 por estación</td>
               </tr>
               <tr>
-                <td>Molino manual o eléctrico</td>
-                <td>Molienda fresca en el momento</td>
-                <td>1–2 unidades</td>
+                <td data-label="Equipo">Molino manual o eléctrico</td>
+                <td data-label="Para qué sirve">Molienda fresca en el momento</td>
+                <td data-label="Cantidad">1–2 unidades</td>
               </tr>
               <tr>
-                <td>Balanza con timer</td>
-                <td>Precisión en café, agua y tiempo</td>
-                <td>1 por estación</td>
+                <td data-label="Equipo">Balanza con timer</td>
+                <td data-label="Para qué sirve">Precisión en café, agua y tiempo</td>
+                <td data-label="Cantidad">1 por estación</td>
               </tr>
             </tbody>
           </table>
+          </div>
 
-          <h4 style="margin: 2rem 0 1rem; font-size: 1.1rem;">Insumos por evento</h4>
+          <h4 class="subheading-spaced">Insumos por evento</h4>
+          <div class="table-wrapper">
           <table class="resource-table">
             <thead>
               <tr>
@@ -1025,27 +1327,28 @@
             </thead>
             <tbody>
               <tr>
-                <td>Café de origen molido y en grano</td>
-                <td>250–400 g según número de participantes</td>
-                <td><span class="tag tag-essential">Esencial</span></td>
+                <td data-label="Insumo">Café de origen molido y en grano</td>
+                <td data-label="Detalle">250–400 g según número de participantes</td>
+                <td data-label="Notas"><span class="tag tag-essential">Esencial</span></td>
               </tr>
               <tr>
-                <td>Filtros de papel (V60 / Chemex)</td>
-                <td>2–3 por participante</td>
-                <td><span class="tag tag-essential">Esencial</span></td>
+                <td data-label="Insumo">Filtros de papel (V60 / Chemex)</td>
+                <td data-label="Detalle">2–3 por participante</td>
+                <td data-label="Notas"><span class="tag tag-essential">Esencial</span></td>
               </tr>
               <tr>
-                <td>Agua filtrada</td>
-                <td>~20 L para 15–25 personas</td>
-                <td><span class="tag tag-essential">Esencial</span></td>
+                <td data-label="Insumo">Agua filtrada</td>
+                <td data-label="Detalle">~20 L para 15–25 personas</td>
+                <td data-label="Notas"><span class="tag tag-essential">Esencial</span></td>
               </tr>
               <tr>
-                <td>Premio simbólico</td>
-                <td>Bolsa de café, mug o diploma</td>
-                <td><span class="tag tag-optional">Recomendado</span></td>
+                <td data-label="Insumo">Premio simbólico</td>
+                <td data-label="Detalle">Bolsa de café, mug o diploma</td>
+                <td data-label="Notas"><span class="tag tag-optional">Recomendado</span></td>
               </tr>
             </tbody>
           </table>
+          </div>
 
           <div class="includes-grid">
             <div class="include-item"><span class="icon">🫖</span> Métodos de preparación completos</div>
@@ -1144,7 +1447,7 @@
         </div>
       </div>
 
-      <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+      <p class="footnote">
         Precios válidos para eventos en Cali. Para otras ciudades, consultar costos adicionales de desplazamiento.
       </p>
     </div>
