@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Elixir Café — Presupuesto Interno de Eventos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --coffee-dark: #2c1810;
+      --coffee-medium: #5c3d2e;
+      --cream: #faf6f0;
+      --cream-dark: #f0e8dc;
+      --accent: #c87941;
+      --green: #4a6741;
+      --green-bg: #e8f0e8;
+      --red-bg: #fde8e8;
+      --text: #3d2c24;
+      --text-muted: #6b5344;
+      --white: #ffffff;
+      --radius: 12px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: clamp(14px, 2.2vw, 16px);
+    }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; color: var(--coffee-dark); line-height: 1.25; }
+    .header {
+      background: linear-gradient(135deg, var(--coffee-dark), var(--coffee-medium));
+      color: var(--cream);
+      padding: 2.5rem 1.25rem;
+    }
+    .header-inner { max-width: 1000px; margin: 0 auto; }
+    .header h1 { color: var(--cream); font-size: clamp(1.6rem, 4vw, 2.2rem); margin-bottom: 0.5rem; }
+    .header p { opacity: 0.9; max-width: 680px; }
+    .header-nav { margin-top: 1.25rem; }
+    .header-nav a {
+      color: var(--cream);
+      text-decoration: none;
+      background: rgba(255,255,255,0.12);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+    .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+    section { margin-bottom: 2.5rem; }
+    .label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+    h2 { font-size: clamp(1.3rem, 3vw, 1.65rem); margin-bottom: 0.75rem; }
+    .intro { color: var(--text-muted); margin-bottom: 1.25rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--cream-dark);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .card .num {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .card .lbl { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
+    .card.positive { border-color: var(--green); background: var(--green-bg); }
+    .card.positive .num { color: var(--green); }
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1rem 0; border-radius: var(--radius); box-shadow: 0 2px 12px rgba(44,24,16,0.06); }
+    table { width: 100%; border-collapse: collapse; background: var(--white); font-size: 0.92rem; min-width: 560px; }
+    th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--cream-dark); }
+    th { background: var(--coffee-dark); color: var(--cream); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    tr:last-child td { border-bottom: none; }
+    .money { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .subtotal td { font-weight: 700; background: var(--cream); }
+    .total td { font-weight: 700; background: var(--coffee-dark); color: var(--cream); }
+    .total .money { color: var(--cream); }
+    .note {
+      background: #fff8e6;
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.15rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 0.9rem;
+      margin: 1rem 0;
+    }
+    .note strong { color: var(--coffee-dark); }
+    .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .compare-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      border: 1px solid var(--cream-dark);
+    }
+    .compare-box h3 { font-size: 1.05rem; margin-bottom: 0.75rem; }
+    .row { display: flex; justify-content: space-between; padding: 0.35rem 0; font-size: 0.9rem; border-bottom: 1px dashed var(--cream-dark); }
+    .row:last-child { border-bottom: none; font-weight: 700; padding-top: 0.5rem; margin-top: 0.25rem; }
+    .row .val { color: var(--coffee-medium); }
+    .row:last-child .val { color: var(--green); font-size: 1.05rem; }
+    .row.negative .val { color: #a04040; }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      background: var(--cream-dark);
+      color: var(--coffee-medium);
+    }
+    .tag.fixed { background: #e8eef5; color: #3d5a80; }
+    .tag.var { background: #fde8d8; color: #8b4513; }
+    @media (max-width: 640px) {
+      table { min-width: 0; }
+      thead { display: none; }
+      table, tbody, tr, td { display: block; width: 100%; }
+      tr { margin-bottom: 0.75rem; border: 1px solid var(--cream-dark); border-radius: var(--radius); overflow: hidden; }
+      td { border: none; border-bottom: 1px solid var(--cream-dark); }
+      td::before { content: attr(data-label); display: block; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+      td.money { text-align: left; }
+      .subtotal td, .total td { display: block; }
+    }
+    @media print {
+      .header-nav { display: none; }
+      .table-wrap { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <p class="label" style="color:#e8a86b;">Documento interno · Elixir Café</p>
+      <h1>Presupuesto de costos por evento</h1>
+      <p>Desglose estimado para ejecutar los talleres de catación y preparación manual en Cali. Valores en COP, base junio 2026. Ajustar según proveedores reales.</p>
+      <div class="header-nav"><a href="index.html">← Volver a la propuesta comercial</a></div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <section>
+      <p class="label">Tarifas propuestas</p>
+      <h2>Personal barista (pendiente de formalizar)</h2>
+      <p class="intro">Referencia de mercado Cali para baristas freelance en eventos corporativos. Se sugieren 2 baristas por evento: uno facilita y otro apoya estaciones.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Concepto</th>
+              <th>Tarifa sugerida</th>
+              <th>Notas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Concepto">Barista facilitador (senior)</td>
+              <td data-label="Tarifa" class="money">$50.000 / hora</td>
+              <td data-label="Notas">Capacitación, dinámica grupal, cierre</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Barista apoyo / logística</td>
+              <td data-label="Tarifa" class="money">$40.000 / hora</td>
+              <td data-label="Notas">Estaciones, insumos, evaluación, montaje</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Tarifa plana por barista (taller 2 h)</td>
+              <td data-label="Tarifa" class="money">$180.000 / evento</td>
+              <td data-label="Notas">Alternativa simple a cobro por hora</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">2 baristas · taller de 2 horas</td>
+              <td data-label="Tarifa" class="money"><strong>$360.000</strong></td>
+              <td data-label="Notas">Costo labor directo por taller</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">2 baristas · jornada completa (~5 h)</td>
+              <td data-label="Tarifa" class="money"><strong>$810.000</strong></td>
+              <td data-label="Notas">Catación + preparación mismo día (incl. montaje)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <p class="label">Taller 1</p>
+      <h2>Catación por triangulación — 15 personas · 2 horas</h2>
+      <p class="intro">Paquete Esencial. Incluye capacitación, triangulación, kit sensorial y certificados.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Ítem</th>
+              <th>Cantidad</th>
+              <th>Costo unit.</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="4" style="background:var(--cream);font-weight:600;">👤 Personal</td></tr>
+            <tr>
+              <td data-label="Ítem">Barista facilitador <span class="tag fixed">Fijo</span></td>
+              <td data-label="Cantidad">2 h</td>
+              <td data-label="Unit." class="money">$50.000</td>
+              <td data-label="Subtotal" class="money">$100.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Barista apoyo <span class="tag fixed">Fijo</span></td>
+              <td data-label="Cantidad">2 h</td>
+              <td data-label="Unit." class="money">$40.000</td>
+              <td data-label="Subtotal" class="money">$80.000</td>
+            </tr>
+            <tr><td colspan="4" style="background:var(--cream);font-weight:600;">☕ Insumos</td></tr>
+            <tr>
+              <td data-label="Ítem">Café origen especialidad (2 variedades) <span class="tag var">Variable</span></td>
+              <td data-label="Cantidad">600 g</td>
+              <td data-label="Unit." class="money">$260.000 / kg</td>
+              <td data-label="Subtotal" class="money">$156.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Agua filtrada / embotellada</td>
+              <td data-label="Cantidad">15 L</td>
+              <td data-label="Unit." class="money">$800 / L</td>
+              <td data-label="Subtotal" class="money">$12.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Kit sensorial (frutas, chocolate, especias)</td>
+              <td data-label="Cantidad">1 kit</td>
+              <td data-label="Unit." class="money">$45.000</td>
+              <td data-label="Subtotal" class="money">$45.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Vasos spit, servilletas, desechables</td>
+              <td data-label="Cantidad">1 lote</td>
+              <td data-label="Unit." class="money">$22.000</td>
+              <td data-label="Subtotal" class="money">$22.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Certificados impresos a color</td>
+              <td data-label="Cantidad">15 uds</td>
+              <td data-label="Unit." class="money">$4.500</td>
+              <td data-label="Subtotal" class="money">$67.500</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Hojas de puntuación / cartillas</td>
+              <td data-label="Cantidad">15 uds</td>
+              <td data-label="Unit." class="money">$1.000</td>
+              <td data-label="Subtotal" class="money">$15.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Premio simbólico equipo ganador</td>
+              <td data-label="Cantidad">1</td>
+              <td data-label="Unit." class="money">$45.000</td>
+              <td data-label="Subtotal" class="money">$45.000</td>
+            </tr>
+            <tr><td colspan="4" style="background:var(--cream);font-weight:600;">🫖 Equipos (uso por evento)</td></tr>
+            <tr>
+              <td data-label="Ítem">Set catación SCA + cucharas (amortización)</td>
+              <td data-label="Cantidad">4 mesas</td>
+              <td data-label="Unit." class="money">$15.000 / mesa</td>
+              <td data-label="Subtotal" class="money">$60.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Hervidor, balanza, termo, molino (uso)</td>
+              <td data-label="Cantidad">1 lote</td>
+              <td data-label="Unit." class="money">$35.000</td>
+              <td data-label="Subtotal" class="money">$35.000</td>
+            </tr>
+            <tr><td colspan="4" style="background:var(--cream);font-weight:600;">🚗 Logística</td></tr>
+            <tr>
+              <td data-label="Ítem">Transporte local ida / vuelta</td>
+              <td data-label="Cantidad">1 viaje</td>
+              <td data-label="Unit." class="money">$55.000</td>
+              <td data-label="Subtotal" class="money">$55.000</td>
+            </tr>
+            <tr class="subtotal">
+              <td colspan="3">Subtotal directo</td>
+              <td class="money">$692.500</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Contingencia (10%)</td>
+              <td data-label="Cantidad">—</td>
+              <td data-label="Unit." class="money">—</td>
+              <td data-label="Subtotal" class="money">$69.250</td>
+            </tr>
+            <tr class="total">
+              <td colspan="3">Costo total estimado — Taller catación (15 pers.)</td>
+              <td class="money">$761.750</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cards">
+        <div class="card"><div class="num">$761.750</div><div class="lbl">Costo estimado</div></div>
+        <div class="card"><div class="num">$1.500.000</div><div class="lbl">Precio venta Esencial</div></div>
+        <div class="card positive"><div class="num">$738.250</div><div class="lbl">Margen bruto (~49%)</div></div>
+        <div class="card"><div class="num">$50.783</div><div class="lbl">Costo por participante</div></div>
+      </div>
+    </section>
+
+    <section>
+      <p class="label">Taller 2</p>
+      <h2>Preparación manual — 25 personas · 2 horas</h2>
+      <p class="intro">Costo incremental si se contrata solo este taller, o adicional al combinarlo en jornada Premium.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Ítem</th>
+              <th>Cantidad</th>
+              <th>Costo unit.</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="4" style="background:var(--cream);font-weight:600;">👤 Personal adicional (mismo día)</td></tr>
+            <tr>
+              <td data-label="Ítem">2 baristas · 2 h extra (preparación)</td>
+              <td data-label="Cantidad">4 h-h</td>
+              <td data-label="Unit." class="money">$45.000 prom.</td>
+              <td data-label="Subtotal" class="money">$180.000</td>
+            </tr>
+            <tr><td colspan="4" style="background:var(--cream);font-weight:600;">☕ Insumos</td></tr>
+            <tr>
+              <td data-label="Ítem">Café origen (grano + molido)</td>
+              <td data-label="Cantidad">400 g</td>
+              <td data-label="Unit." class="money">$260.000 / kg</td>
+              <td data-label="Subtotal" class="money">$104.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Filtros V60 / Chemex</td>
+              <td data-label="Cantidad">50 uds</td>
+              <td data-label="Unit." class="money">$1.200</td>
+              <td data-label="Subtotal" class="money">$60.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Agua filtrada adicional</td>
+              <td data-label="Cantidad">20 L</td>
+              <td data-label="Unit." class="money">$800 / L</td>
+              <td data-label="Subtotal" class="money">$16.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Premio concurso (bolsa café / mug)</td>
+              <td data-label="Cantidad">3 uds</td>
+              <td data-label="Unit." class="money">$35.000</td>
+              <td data-label="Subtotal" class="money">$105.000</td>
+            </tr>
+            <tr><td colspan="4" style="background:var(--cream);font-weight:600;">🫖 Equipos (uso por evento)</td></tr>
+            <tr>
+              <td data-label="Ítem">V60 + Chemex + prensa (6 estaciones)</td>
+              <td data-label="Cantidad">6 sets</td>
+              <td data-label="Unit." class="money">$12.000 / set</td>
+              <td data-label="Subtotal" class="money">$72.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Hervidor cuello ganso + balanzas extra</td>
+              <td data-label="Cantidad">1 lote</td>
+              <td data-label="Unit." class="money">$40.000</td>
+              <td data-label="Subtotal" class="money">$40.000</td>
+            </tr>
+            <tr class="subtotal">
+              <td colspan="3">Subtotal incremental (sin repetir transporte)</td>
+              <td class="money">$577.000</td>
+            </tr>
+            <tr>
+              <td data-label="Ítem">Contingencia (10%)</td>
+              <td colspan="2"></td>
+              <td class="money">$57.700</td>
+            </tr>
+            <tr class="total">
+              <td colspan="3">Costo adicional — Taller preparación (25 pers.)</td>
+              <td class="money">$634.700</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <p class="label">Paquete combinado</p>
+      <h2>Premium — Catación + Preparación · 25 personas · mismo día</h2>
+      <p class="intro">Al hacer ambos talleres el mismo día se comparte transporte, montaje y parte del personal. Duración total aproximada: 4.5–5 horas.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Concepto</th>
+              <th>Detalle</th>
+              <th>Costo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Concepto">Personal (2 baristas × 5 h)</td>
+              <td data-label="Detalle">Facilitador + apoyo, jornada completa</td>
+              <td data-label="Costo" class="money">$810.000</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Insumos catación (25 pers.)</td>
+              <td data-label="Detalle">Café 800 g, kit sensorial, certificados</td>
+              <td data-label="Costo" class="money">$298.000</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Insumos preparación</td>
+              <td data-label="Detalle">Café, filtros, agua, premios</td>
+              <td data-label="Costo" class="money">$285.000</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Equipos ambos talleres</td>
+              <td data-label="Detalle">Catación + V60/Chemex/prensa</td>
+              <td data-label="Costo" class="money">$167.000</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Transporte local</td>
+              <td data-label="Detalle">1 viaje (compartido)</td>
+              <td data-label="Costo" class="money">$55.000</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Contingencia (10%)</td>
+              <td data-label="Detalle">Imprevistos, mermas, extras</td>
+              <td data-label="Costo" class="money">$161.500</td>
+            </tr>
+            <tr class="total">
+              <td colspan="2">Costo total estimado — Paquete Premium</td>
+              <td class="money">$1.776.500</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cards">
+        <div class="card"><div class="num">$1.776.500</div><div class="lbl">Costo estimado</div></div>
+        <div class="card"><div class="num">$2.000.000</div><div class="lbl">Precio venta Premium</div></div>
+        <div class="card"><div class="num">$223.500</div><div class="lbl">Margen bruto (~11%)</div></div>
+        <div class="card"><div class="num">$71.060</div><div class="lbl">Costo por participante</div></div>
+      </div>
+
+      <div class="note">
+        <strong>⚠️ Alerta de margen:</strong> El paquete Premium a $2.000.000 queda ajustado con estos costos. Se recomienda subir a <strong>$2.300.000 – $2.500.000</strong> o reducir participantes a 20 para mantener un margen saludable del 25–35%.
+      </div>
+    </section>
+
+    <section>
+      <p class="label">Paquete PRO</p>
+      <h2>Experiencial PRO — + Team Building · 40 personas</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Concepto</th><th>Detalle</th><th>Costo</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Concepto">Base Premium escalada a 40 pers.</td>
+              <td data-label="Detalle">Más café, certificados, estaciones</td>
+              <td data-label="Costo" class="money">$2.150.000</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Taller Team Building (+2 h)</td>
+              <td data-label="Detalle">2 baristas × 2 h + insumos creativos</td>
+              <td data-label="Costo" class="money">$520.000</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Materiales team building</td>
+              <td data-label="Detalle">Syrups, leche, toppings, vasos extra</td>
+              <td data-label="Costo" class="money">$180.000</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Reconocimiento grupal</td>
+              <td data-label="Detalle">Diploma + foto + premio equipo</td>
+              <td data-label="Costo" class="money">$120.000</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Contingencia (10%)</td>
+              <td data-label="Detalle">—</td>
+              <td data-label="Costo" class="money">$297.000</td>
+            </tr>
+            <tr class="total">
+              <td colspan="2">Costo total estimado — Experiencial PRO</td>
+              <td class="money">$3.267.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cards">
+        <div class="card"><div class="num">$3.267.000</div><div class="lbl">Costo estimado</div></div>
+        <div class="card"><div class="num">$3.300.000</div><div class="lbl">Precio venta PRO</div></div>
+        <div class="card negative" style="border-color:#a04040;background:var(--red-bg);"><div class="num" style="color:#a04040;">$33.000</div><div class="lbl">Margen bruto (~1%) — revisar precio</div></div>
+      </div>
+
+      <div class="note">
+        <strong>Recomendación:</strong> El paquete PRO debería cotizarse mínimo en <strong>$3.800.000 – $4.200.000</strong> para 40 personas con team building incluido, o limitar a 30 participantes.
+      </div>
+    </section>
+
+    <section>
+      <p class="label">Inversión inicial</p>
+      <h2>Equipos propios (compra única, amortizable)</h2>
+      <p class="intro">Si Elixir Café aún no tiene todo el equipamiento, este es el costo de adquisición estimado en Cali.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Equipo</th><th>Cantidad sugerida</th><th>Costo unit. aprox.</th><th>Total</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Equipo">Set catación SCA (tazas + cucharas)</td>
+              <td data-label="Cantidad">4 sets</td>
+              <td data-label="Unit." class="money">$280.000</td>
+              <td data-label="Total" class="money">$1.120.000</td>
+            </tr>
+            <tr>
+              <td data-label="Equipo">Balanza precision 0.1 g</td>
+              <td data-label="Cantidad">3 uds</td>
+              <td data-label="Unit." class="money">$180.000</td>
+              <td data-label="Total" class="money">$540.000</td>
+            </tr>
+            <tr>
+              <td data-label="Equipo">Hervidor cuello de ganso</td>
+              <td data-label="Cantidad">2 uds</td>
+              <td data-label="Unit." class="money">$220.000</td>
+              <td data-label="Total" class="money">$440.000</td>
+            </tr>
+            <tr>
+              <td data-label="Equipo">V60 + server</td>
+              <td data-label="Cantidad">6 uds</td>
+              <td data-label="Unit." class="money">$85.000</td>
+              <td data-label="Total" class="money">$510.000</td>
+            </tr>
+            <tr>
+              <td data-label="Equipo">Chemex 6 tazas</td>
+              <td data-label="Cantidad">2 uds</td>
+              <td data-label="Unit." class="money">$195.000</td>
+              <td data-label="Total" class="money">$390.000</td>
+            </tr>
+            <tr>
+              <td data-label="Equipo">Prensa francesa 1 L</td>
+              <td data-label="Cantidad">4 uds</td>
+              <td data-label="Unit." class="money">$75.000</td>
+              <td data-label="Total" class="money">$300.000</td>
+            </tr>
+            <tr>
+              <td data-label="Equipo">Molino eléctrico burr</td>
+              <td data-label="Cantidad">1 ud</td>
+              <td data-label="Unit." class="money">$650.000</td>
+              <td data-label="Total" class="money">$650.000</td>
+            </tr>
+            <tr>
+              <td data-label="Equipo">Termo / kit transporte</td>
+              <td data-label="Cantidad">1 lote</td>
+              <td data-label="Unit." class="money">$350.000</td>
+              <td data-label="Total" class="money">$350.000</td>
+            </tr>
+            <tr class="total">
+              <td colspan="3">Inversión inicial total estimada</td>
+              <td class="money">$4.300.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="intro" style="margin-top:0.75rem;">Amortizado en ~20 eventos → ~$215.000 adicionales por evento hasta recuperar inversión.</p>
+    </section>
+
+    <section>
+      <p class="label">Variables</p>
+      <h2>Costo por persona adicional</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Concepto</th><th>Catación</th><th>Preparación</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Concepto">Café extra</td>
+              <td data-label="Catación" class="money">$8.000 / pers.</td>
+              <td data-label="Prep." class="money">$6.000 / pers.</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Certificado + cartilla</td>
+              <td data-label="Catación" class="money">$5.500 / pers.</td>
+              <td data-label="Prep." class="money">—</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Desechables / filtros</td>
+              <td data-label="Catación" class="money">$2.000 / pers.</td>
+              <td data-label="Prep." class="money">$4.000 / pers.</td>
+            </tr>
+            <tr>
+              <td data-label="Concepto">Personal extra (si supera 25)</td>
+              <td data-label="Catación" class="money">+$180.000 / cada 10 pers.</td>
+              <td data-label="Prep." class="money">+$180.000 / cada 8 pers.</td>
+            </tr>
+            <tr class="total">
+              <td>Incremento sugerido al cliente</td>
+              <td class="money">$45.000 – $55.000 / pers.</td>
+              <td class="money">$40.000 – $50.000 / pers.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <p class="label">Resumen</p>
+      <h2>Comparativa rápida de márgenes</h2>
+
+      <div class="compare">
+        <div class="compare-box">
+          <h3>Esencial · 15 pers.</h3>
+          <div class="row"><span>Costo</span><span class="val">$761.750</span></div>
+          <div class="row"><span>Precio actual</span><span class="val">$1.500.000</span></div>
+          <div class="row"><span>Margen</span><span class="val">$738.250 (49%)</span></div>
+        </div>
+        <div class="compare-box">
+          <h3>Premium · 25 pers.</h3>
+          <div class="row"><span>Costo</span><span class="val">$1.776.500</span></div>
+          <div class="row"><span>Precio actual</span><span class="val">$2.000.000</span></div>
+          <div class="row negative"><span>Margen</span><span class="val">$223.500 (11%)</span></div>
+        </div>
+        <div class="compare-box">
+          <h3>PRO · 40 pers.</h3>
+          <div class="row"><span>Costo</span><span class="val">$3.267.000</span></div>
+          <div class="row"><span>Precio actual</span><span class="val">$3.300.000</span></div>
+          <div class="row negative"><span>Margen</span><span class="val">$33.000 (1%)</span></div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:1.25rem;">
+        <strong>Precios sugeridos revisados:</strong><br>
+        Esencial (15 pers.) → mantener <strong>$1.500.000</strong><br>
+        Premium (25 pers.) → subir a <strong>$2.400.000</strong><br>
+        Experiencial PRO (40 pers.) → subir a <strong>$4.000.000</strong><br><br>
+        Estos valores cubren costos, contingencia y dejan margen bruto del 25–35% para reinversión, marketing y utilidad.
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
